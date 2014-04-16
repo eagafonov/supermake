@@ -4,7 +4,6 @@ SANDBOX ?=. $(SANDBOX_DIR)/bin/activate &&
 
 ROOT:=$(shell pwd)
 
-PYTHON_PATH:=$(shell pwd)/lib
 
 PYLINT:=$(SANDBOX) PYTHONPATH=$(PYTHON_PATH) pylint --max-line-length=140 --indent-string='    '
 
@@ -41,14 +40,8 @@ $(addprefix run-,$(wildcard *.py)):
 	@echo 'Running ' $@
 	$(PYTHON) $(subst run-,,$@)
 
-run-twisted:
-	$(TWISTD) -n iqubot -P test123
-
 shell:
 	$(SANDBOX) export debian_chroot='SBOX' && export PYTHONPATH=$(PYTHON_PATH) && /bin/bash -i
-
-check:
-	export PYTHONPATH=$(PYTHON_PATH) && ./runtrial.sh
 
 pydoc:
 	$(PYTHON) `which pydoc` -p 8081
