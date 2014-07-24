@@ -20,7 +20,7 @@ distclean::
 	-rm -Rf $(SANDBOX_DIR)
 
 
-shell:
+shell: sandbox
 	$(SANDBOX) export debian_chroot='SBOX' && export PYTHONPATH=$(PYTHON_PATH) && /bin/bash -i
 
 install-requirements: sandbox requirements.txt
