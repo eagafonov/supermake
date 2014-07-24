@@ -1,6 +1,11 @@
+
 SANDBOX_DIR?=$(shell pwd)/sandbox
+
 SANDBOX ?=. $(SANDBOX_DIR)/bin/activate &&
+
 PIP:=$(SANDBOX) pip
+
+PYLINT:=$(SANDBOX) PYTHONPATH=$(PYTHON_PATH) pylint --max-line-length=140 --indent-string='    '  $(PYLINT_ARGS)
 
 smf-check::
 	$(call SMF_CHECK_VAR,SANDBOX_DIR)
@@ -24,3 +29,6 @@ install-requirements: sandbox requirements.txt
 requirements.txt:
 	@echo $@ must present in root folder
 	exit 1
+
+pylint:
+	$(PYLINT) $(PYLINT_PACKAGES)
