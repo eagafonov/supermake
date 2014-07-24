@@ -1,4 +1,4 @@
-python-supermake-template
-=========================
+Supermake
+=========
 
-Supermakefile to be used with python projects
+A set of makefiles to create supermakefile.
