@@ -5,6 +5,8 @@ SANDBOX ?=. $(SANDBOX_DIR)/bin/activate &&
 
 PIP:=$(SANDBOX) pip
 
+VIRTUALENV?=virtualenv
+
 PYLINT:=$(SANDBOX) PYTHONPATH=$(PYTHON_PATH) pylint --max-line-length=140 --indent-string='    '  $(PYLINT_ARGS)
 
 smf-check::
@@ -14,7 +16,7 @@ sandbox: $(SANDBOX_DIR)
 
 
 $(SANDBOX_DIR):
-	virtualenv --no-site-packages $(SANDBOX_DIR)
+	$(VIRTUALENV) --no-site-packages $(SANDBOX_DIR)
 
 distclean::
 	-rm -Rf $(SANDBOX_DIR)
