@@ -32,5 +32,5 @@ requirements.txt:
 	@echo $@ must present in root folder
 	exit 1
 
-pylint:
+pylint::
 	$(PYLINT) $(PYLINT_PACKAGES)
