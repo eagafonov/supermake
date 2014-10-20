@@ -29,6 +29,13 @@ sandbox:
 install-requirements: sandbox requirements.txt
 	$(PIP) install -r requirements.txt
 
+freeze: sandbox
+	$(PIP) freeze | tee requirements-freezed.txt
+
+install-requirements-freezed: sandbox requirements-freezed.txt
+	$(PIP) install -r requirements-freezed.txt
+
+
 requirements.txt:
 	@echo $@ must present in root folder
 	exit 1
