@@ -32,5 +32,16 @@ requirements.txt:
 	@echo $@ must present in root folder
 	exit 1
 
+freeze: sandbox
+	$(PIP) freeze | tee requirements-freezed.txt
+
+install-requirements-freezed: sandbox requirements-freezed.txt
+	$(PIP) install -r requirements-freezed.txt
+
+requirements-freezed.txt:
+	@echo $@ must present in root folder. Run \'make freeze\' to update it.
+	exit 1
+
+
 pylint::
 	$(PYLINT) $(PYLINT_PACKAGES)
