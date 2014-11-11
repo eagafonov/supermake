@@ -2,10 +2,11 @@
 SANDBOX_DIR?=$(shell pwd)/sandbox
 
 SANDBOX ?=. $(SANDBOX_DIR)/bin/activate &&
+PYTHON?=python
 
 PIP:=$(SANDBOX) pip
 
-VIRTUALENV?=virtualenv --no-site-packages
+VIRTUALENV?= $(PYTHON) -m virtualenv --no-site-packages
 
 PYLINT:=$(SANDBOX) PYTHONPATH=$(PYTHON_PATH) pylint --max-line-length=140 --indent-string='    '  $(PYLINT_ARGS)
 
