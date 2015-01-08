@@ -6,4 +6,4 @@ runserver:
 	$(PYTHON) manage.py runserver
 
 collectstatic:
-	$(SANDBOX) ./manage.py collectstatic --noinput
+	$(SANDBOX) ./manage.py collectstatic --noinput --clear
