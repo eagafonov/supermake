@@ -82,10 +82,14 @@ lets install it before tests is invoked
 * PYTHON - python binary to use. Defaul is `python`. Set to `python3` to enforce fresh  Python3 or `python2.6` to stick on old crap.
 * SANDBOX_DIR - Path where sandbox will be installed. Default is `$(shell pwd)/sandbox`
 
-### Other useful variable s
-* SANDBOX - command prefix to run it the command on sandbox. Default is `source $(SANDBOX_DIR)/bin/activate &&`. 
-            I.e. `$(SANDBOX) python runme.py` is expanded into `source $(SANDBOX_DIR)/bin/activate && python runme.py`
-* VIRTUALENV - command to setup sandbox. Default is `$(PYTHON) -m virtualenv --no-site-packages`
+### Other useful variable
+
+#### SANDBOX 
+command prefix to run it the command on sandbox. Default is `source $(SANDBOX_DIR)/bin/activate &&`. 
+So `$(SANDBOX) python runme.py` is expanded into `source $(SANDBOX_DIR)/bin/activate && python runme.py`
+
+#### VIRTUALENV 
+Command to setup sandbox. Default is `$(PYTHON) -m virtualenv --no-site-packages`
 
 
 
