@@ -26,7 +26,7 @@ distclean::
 shell: sandbox
 	$(SANDBOX) export debian_chroot='SBOX' && export PYTHONPATH=$(PYTHON_PATH) && /bin/bash -i
 
-install-requirements: sandbox requirements.txt
+install-requirements: requirements.txt sandbox
 	$(PIP) install -r requirements.txt
 
 requirements.txt:
