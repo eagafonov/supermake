@@ -36,7 +36,7 @@ This module contains variouse stuff con setup local sandobox evironment
 
 #### sandbox
 
-	Setup empty sandbox in `$(SANDBOX_DIR)` if not exists. 
+Setup fresh sandbox in `$(SANDBOX_DIR)` if not exists. It need not to be invoked directly but must be mentioned here
 
 #### shell
 
@@ -53,17 +53,17 @@ Save currently installed packages into `requirements-freezed.txt` with `pip free
 
 #### install-requirements-freezed
 
-Install freezed requirements from requirements-freezed.txt
+Install freezed requirements from `requirements-freezed.txt`
 
 #### check-sandbox
 
 Helper target to make sure sandbox is active.
-Fails if invoken not in sandbox
+Fails if invoked not in sandbox
 
 Usage example:
 
-		must_run_in_sandbox: check-sandbox
-			echo "Sandbox is OK"
+	must_run_in_sandbox: check-sandbox
+		echo "Sandbox is OK"
 
 #### pip-install-%
 
