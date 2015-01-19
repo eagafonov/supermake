@@ -54,3 +54,6 @@ ifneq ($(shell dirname $(shell which python)), $(SANDBOX_DIR)/bin)
 	@echo "Not a sandbox. Aborting"
 	@exit 1
 endif
+
+pip-install-%:
+	$(PIP) install $(subst pip-install-,,$@)
