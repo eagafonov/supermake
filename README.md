@@ -19,6 +19,8 @@ Here is an example of minimal supermakefile to use sandbox
     all:
 
     include supermake/python-sandbox.mk
+    
+Note that default target `all` is placed before any include
 
 Modules
 =======
