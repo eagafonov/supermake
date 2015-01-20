@@ -27,7 +27,10 @@ shell: sandbox
 	$(SANDBOX) export debian_chroot='SBOX' && export PYTHONPATH=$(PYTHON_PATH) && /bin/bash -i
 
 install-requirements: requirements.txt sandbox
-	$(PIP) install -r requirements.txt
+	$(PIP) install --requirement=requirements.txt  $(PIP_EXTRA)
+
+upgrade-requirements: requirements.txt sandbox
+	$(PIP) install --upgrade --requirement=requirements.txt  $(PIP_EXTRA)
 
 requirements.txt:
 	@echo $@ must present in root folder
