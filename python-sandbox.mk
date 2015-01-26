@@ -47,7 +47,7 @@ requirements-freezed.txt:
 	exit 1
 
 
-pylint::
+pylint:: pip-install-pylint
 	$(PYLINT) $(PYLINT_PACKAGES)
 
 check-sandbox:
