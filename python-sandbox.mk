@@ -26,8 +26,11 @@ distclean::
 shell: sandbox
 	$(SANDBOX) export debian_chroot='SBOX' && export PYTHONPATH=$(PYTHON_PATH) && /bin/bash -i
 
-install-requirements: sandbox requirements.txt
-	$(PIP) install -r requirements.txt
+install-requirements: requirements.txt sandbox
+	$(PIP) install --requirement=requirements.txt  $(PIP_EXTRA)
+
+upgrade-requirements: requirements.txt sandbox
+	$(PIP) install --upgrade --requirement=requirements.txt  $(PIP_EXTRA)
 
 requirements.txt:
 	@echo $@ must present in root folder
@@ -44,7 +47,7 @@ requirements-freezed.txt:
 	exit 1
 
 
-pylint::
+pylint:: pip-install-pylint
 	$(PYLINT) $(PYLINT_PACKAGES)
 
 check-sandbox:
@@ -54,3 +57,6 @@ ifneq ($(shell dirname $(shell which python)), $(SANDBOX_DIR)/bin)
 	@echo "Not a sandbox. Aborting"
 	@exit 1
 endif
+
+pip-install-%:
+	$(PIP) install $(subst pip-install-,,$@)
