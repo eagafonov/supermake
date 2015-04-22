@@ -47,8 +47,11 @@ requirements-freezed.txt:
 	exit 1
 
 
-pylint:: pip-install-pylint
+pylint:: pip-check-install-pylint
 	$(PYLINT) $(PYLINT_PACKAGES)
+
+pip-check-install-pylint:
+	test -f $(SANDBOX_DIR)/bin/pylint || make pip-install-pylint
 
 check-sandbox:
 #	echo $(shell dirname "$(shell which python)")
