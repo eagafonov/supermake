@@ -7,3 +7,6 @@ runserver:
 
 collectstatic:
 	$(SANDBOX) ./manage.py collectstatic --noinput --clear
+
+manage-check:
+	$(SANDBOX) ./manage.py check
