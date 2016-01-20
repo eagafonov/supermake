@@ -36,6 +36,17 @@ requirements-dev.txt:
 	@echo $@ must present in root folder
 	exit 1
 
+install-requirements-test: requirements-test.txt requirements-dev.txt sandbox
+	$(PIP) install --requirement=requirements-dev.txt  \
+		--requirement=requirements-test.txt \
+		$(PIP_EXTRA)
+
+requirements-dev.txt:
+	@echo $@ must present in root folder
+	exit 1
+
+
+
 freeze: sandbox
 	$(PIP) freeze | tee requirements.txt
 
