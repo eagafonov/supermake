@@ -26,23 +26,23 @@ distclean::
 shell: sandbox
 	$(SANDBOX) export debian_chroot='SBOX' && export PYTHONPATH=$(PYTHON_PATH) && /bin/bash -i
 
-install-requirements: requirements.txt sandbox
-	$(PIP) install --requirement=requirements.txt  $(PIP_EXTRA)
+install-requirements: requirements-dev.txt sandbox
+	$(PIP) install --requirement=requirements-dev.txt  $(PIP_EXTRA)
 
-upgrade-requirements: requirements.txt sandbox
-	$(PIP) install --upgrade --requirement=requirements.txt  $(PIP_EXTRA)
+upgrade-requirements: requirements-dev.txt sandbox
+	$(PIP) install --upgrade --requirement=requirements-dev.txt  $(PIP_EXTRA)
 
-requirements.txt:
+requirements-dev.txt:
 	@echo $@ must present in root folder
 	exit 1
 
 freeze: sandbox
-	$(PIP) freeze | tee requirements-freezed.txt
+	$(PIP) freeze | tee requirements.txt
 
-install-requirements-freezed: sandbox requirements-freezed.txt
-	$(PIP) install -r requirements-freezed.txt
+install-requirements-freezed: sandbox requirements.txt
+	$(PIP) install -r requirements.txt
 
-requirements-freezed.txt:
+requirements.txt:
 	@echo $@ must present in root folder. Run \'make freeze\' to update it.
 	exit 1
 
