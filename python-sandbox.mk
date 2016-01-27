@@ -41,7 +41,7 @@ install-requirements-test: requirements-test.txt requirements-dev.txt sandbox
 		--requirement=requirements-test.txt \
 		$(PIP_EXTRA)
 
-requirements-dev.txt:
+requirements-test.txt:
 	@echo $@ must present in root folder
 	exit 1
 
