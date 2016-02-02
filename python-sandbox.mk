@@ -48,7 +48,7 @@ requirements-test.txt:
 
 
 freeze: sandbox
-	$(PIP) freeze | tee requirements.txt
+	(echo "#    !!!! DO NOT EDIT - DO NOT EDIT - DO NOT EDIT \n#    Generated with  'pip freeze'\n#    Updated requirements-dev.txt and launch 'make freeze'\n" ; $(PIP) freeze) | tee requirements.txt
 
 install-requirements-freezed: sandbox requirements.txt
 	$(PIP) install -r requirements.txt
