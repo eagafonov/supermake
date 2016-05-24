@@ -10,6 +10,9 @@ VIRTUALENV?= $(PYTHON) -m virtualenv --no-site-packages
 
 PYLINT:=$(SANDBOX) PYTHONPATH=$(PYTHON_PATH) pylint --output-format=msvs --max-line-length=140 --indent-string='    '  $(PYLINT_ARGS)
 
+
+SORT_CMD:=python -c "import sys; print '\n'.join(sorted(sys.stdin.read().split('\n')))"
+
 smf-check::
 	$(call SMF_CHECK_VAR,SANDBOX_DIR)
 
@@ -46,9 +49,8 @@ requirements-test.txt:
 	exit 1
 
 
-
 freeze: sandbox
-	(echo "#    !!!! DO NOT EDIT - DO NOT EDIT - DO NOT EDIT \n#    Generated with  'pip freeze'\n#    Updated requirements-dev.txt and launch 'make freeze'\n" ; $(PIP) freeze | sort --ignore-case) | tee requirements.txt
+	(echo "#    !!!! DO NOT EDIT - DO NOT EDIT - DO NOT EDIT \n#    Generated with  'pip freeze'\n#    Updated requirements-dev.txt and launch 'make freeze'\n" ; $(PIP) freeze | $(SORT_CMD)) | tee requirements.txt
 
 install-requirements-freezed: sandbox requirements.txt
 	$(PIP) install -r requirements.txt
