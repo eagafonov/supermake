@@ -16,10 +16,10 @@ SORT_CMD:=python -c "import sys; print '\n'.join(sorted(sys.stdin.read().split('
 smf-check::
 	$(call SMF_CHECK_VAR,SANDBOX_DIR)
 
-sandbox: $(SANDBOX_DIR)
+sandbox: $(SANDBOX_DIR)/bin/activate
 
 
-$(SANDBOX_DIR):
+$(SANDBOX_DIR)/bin/activate:
 	$(VIRTUALENV) $(SANDBOX_DIR)
 
 distclean::
