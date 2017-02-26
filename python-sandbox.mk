@@ -12,7 +12,7 @@ VIRTUALENV?= $(PYTHON) -m virtualenv --no-site-packages --python=$(PYTHON)
 PYLINT:=$(SANDBOX) PYTHONPATH=$(PYTHON_PATH) pylint --output-format=msvs --max-line-length=140 --indent-string='    '  $(PYLINT_ARGS)
 
 
-SORT_CMD:=python -c "import sys; print '\n'.join(sorted(sys.stdin.read().split('\n')))"
+SORT_CMD:=python -c "import sys; print('\n'.join(sorted(sys.stdin.read().split('\n'))))"
 
 smf-check::
 	$(call SMF_CHECK_VAR,SANDBOX_DIR)
