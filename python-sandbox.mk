@@ -6,7 +6,8 @@ PYTHON?=python
 
 PIP:=$(SANDBOX) pip
 
-VIRTUALENV?= $(PYTHON) -m virtualenv --no-site-packages
+VIRTUALENV?= $(PYTHON) -m virtualenv --no-site-packages --python=$(PYTHON)
+
 
 PYLINT:=$(SANDBOX) PYTHONPATH=$(PYTHON_PATH) pylint --output-format=msvs --max-line-length=140 --indent-string='    '  $(PYLINT_ARGS)
 
