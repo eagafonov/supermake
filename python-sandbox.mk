@@ -17,11 +17,14 @@ SORT_CMD:=python -c "import sys; print('\n'.join(sorted(sys.stdin.read().split('
 smf-check::
 	$(call SMF_CHECK_VAR,SANDBOX_DIR)
 
-sandbox: $(SANDBOX_DIR)/bin/activate
+sandbox: $(SANDBOX_DIR)/bin/activate upgrade-pip
 
 
 $(SANDBOX_DIR)/bin/activate:
 	$(VIRTUALENV) $(SANDBOX_DIR)
+	
+upgrade-pip:
+	$(SANDBOX) pip install -U pip
 
 distclean::
 	-rm -Rf $(SANDBOX_DIR)
