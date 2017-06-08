@@ -17,7 +17,7 @@ SORT_CMD:=python -c "import sys; print('\n'.join(sorted(sys.stdin.read().split('
 smf-check::
 	$(call SMF_CHECK_VAR,SANDBOX_DIR)
 
-sandbox: $(SANDBOX_DIR)/bin/activate upgrade-pip
+sandbox: $(SANDBOX_DIR)/bin/activate
 
 
 $(SANDBOX_DIR)/bin/activate:
