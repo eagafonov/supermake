@@ -1,0 +1,10 @@
+SUPERMAKE:=$(shell readlink -fe supermake/python-sandbox.mk)
+
+ifneq "x$(SUPERMAKE)x" "xx"
+include $(SUPERMAKE)
+else
+$(warning Can not find supermake/python-sandbox.mk. Some targets will not work)
+endif
+
+test:
+	@echo passed
