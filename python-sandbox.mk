@@ -30,14 +30,28 @@ distclean::
 	-rm -Rf $(SANDBOX_DIR)
 
 
-shell: sandbox
+shell: sandbox $(SANDBOX_DIR)/.requirements-dev-installed.stamp
 	$(SANDBOX) export debian_chroot='SBOX' && export PYTHONPATH=$(PYTHON_PATH) && /bin/bash -i
 
 install-requirements: requirements-dev.txt sandbox
 	$(PIP) install --requirement=requirements-dev.txt  $(PIP_EXTRA)
 
+$(SANDBOX_DIR)/.requirements-dev-installed.stamp:
+	@test -f requirements-dev.txt && ( $(PIP) install --requirement=requirements-dev.txt $(PIP_EXTRA) && touch $@) \
+		|| (echo W: requirements-dev.txt is not found. Nothing is installed)
+
+.force-install-dev:
+	-rm $(SANDBOX_DIR)/.requirements-dev-installed.stamp
+
+# shortcut for install-requirements
+install-dev: .force-install-dev $(SANDBOX_DIR)/.requirements-dev-installed.stamp
+
+
 upgrade-requirements: requirements-dev.txt sandbox
 	$(PIP) install --upgrade --requirement=requirements-dev.txt  $(PIP_EXTRA)
+
+# shortcut for install-requirements
+upgrade-dev: upgrade-requirements
 
 requirements-dev.txt:
 	@echo $@ must present in root folder
