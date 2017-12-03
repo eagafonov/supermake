@@ -1,5 +1,7 @@
 SUPERMAKE:=$(shell readlink -fe supermake/python-sandbox.mk)
 
+PYTHON=python3
+
 ifneq "x$(SUPERMAKE)x" "xx"
 include $(SUPERMAKE)
 else
