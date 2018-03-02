@@ -6,7 +6,9 @@ PYTHON?=python
 
 PIP:=$(SANDBOX) pip
 
-VIRTUALENV?= $(PYTHON) -m virtualenv --no-site-packages --python=$(PYTHON)
+PROMPT?=SBOX
+
+VIRTUALENV?= $(PYTHON) -m virtualenv --prompt="(${PROMPT})" --python=$(PYTHON)
 
 
 PYLINT:=$(SANDBOX) PYTHONPATH=$(PYTHON_PATH) pylint --output-format=msvs --max-line-length=140 --indent-string='    '  $(PYLINT_ARGS)
@@ -31,7 +33,7 @@ distclean::
 
 
 shell: sandbox $(SANDBOX_DIR)/.requirements-dev-installed.stamp
-	$(SANDBOX) export debian_chroot='SBOX' && export PYTHONPATH=$(PYTHON_PATH) && /bin/bash -i
+	$(SANDBOX) export debian_chroot="${PROMPT}" && export PYTHONPATH=$(PYTHON_PATH) && /bin/bash -i
 
 install-requirements: requirements-dev.txt sandbox
 	$(PIP) install --requirement=requirements-dev.txt  $(PIP_EXTRA)
