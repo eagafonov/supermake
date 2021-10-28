@@ -2,7 +2,7 @@
 SANDBOX_DIR?=$(shell pwd)/sandbox
 
 SANDBOX ?=. $(SANDBOX_DIR)/bin/activate &&
-PYTHON?=python
+PYTHON ?= python3
 
 PIP:=$(SANDBOX) pip
 
@@ -87,9 +87,9 @@ pip-check-install-pylint:
 	test -f $(SANDBOX_DIR)/bin/pylint || make pip-install-pylint
 
 check-sandbox:
-#	echo $(shell dirname "$(shell which python)")
+#	echo $(shell dirname "$(shell which $(PYTHON))")
 #	echo $(SANDBOX_DIR)/bin
-ifneq ($(shell dirname $(shell which python)), $(SANDBOX_DIR)/bin)
+ifneq ($(shell dirname $(shell which $(PYTHON))), $(SANDBOX_DIR)/bin)
 	@echo "Not a sandbox. Aborting"
 	@exit 1
 endif
